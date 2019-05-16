@@ -8,11 +8,11 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.example.jacky.Model.Foods;
+import com.example.jacky.Model.Comments;
 
 import java.util.List;
 
-public class NewFoodActivity extends AppCompatActivity {
+public class NewComment extends AppCompatActivity {
 
     private EditText mName;
     private EditText mDescription;
@@ -33,20 +33,20 @@ public class NewFoodActivity extends AppCompatActivity {
         mAdd_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Foods food = new Foods();
+                Comments comment = new Comments();
                 score = mRatingbar.getRating();
-                food.setCustomer_Name(mName.getText().toString());
-                food.setDescription(mDescription.getText().toString());
-                food.setScore("" + (int)score);
-                new FirebaseDatabaseHelper().addComment(food, new FirebaseDatabaseHelper.DataStatus() {
+                comment.setCustomer_Name(mName.getText().toString());
+                comment.setDescription(mDescription.getText().toString());
+                comment.setScore("" + (int)score);
+                new FirebaseDatabaseHelper().addComment(comment, new FirebaseDatabaseHelper.DataStatus() {
                     @Override
-                    public void DataIsLoaded(List<Foods> foods, List<String> keys) {
+                    public void DataIsLoaded(List<Comments> comments, List<String> keys) {
 
                     }
 
                     @Override
                     public void DataIsInserted() {
-                        Toast.makeText(NewFoodActivity.this, "The Comment record has been inserted successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(NewComment.this, "The Comment record has been inserted successfully", Toast.LENGTH_LONG).show();
                     }
 
                     @Override

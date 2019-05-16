@@ -8,22 +8,22 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.jacky.Model.Foods;
+import com.example.jacky.Model.Comments;
 
 import java.util.List;
 
 public class RecyclerView_Config {
     private Context mContext;
-    private FoodsAdapter mFoodAdapter;
+    private CommentsAdapter commentsAdapter;
 
-    public void setConfig(RecyclerView recyclerView, Context context, List<Foods> foods, List<String> keys){
+    public void setConfig(RecyclerView recyclerView, Context context, List<Comments> comments, List<String> keys){
         mContext = context;
-        mFoodAdapter = new FoodsAdapter(foods, keys);
+        commentsAdapter = new CommentsAdapter(comments, keys);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(mFoodAdapter);
+        recyclerView.setAdapter(commentsAdapter);
     }
 
-    class FoodItemView extends RecyclerView.ViewHolder{
+    class CommentItemView extends RecyclerView.ViewHolder{
         private TextView mName;
         //private TextView mScore;
         private TextView mDescription;
@@ -31,7 +31,7 @@ public class RecyclerView_Config {
 
         private String key;
 
-        public FoodItemView(ViewGroup parent){
+        public CommentItemView(ViewGroup parent){
             super(LayoutInflater.from(mContext).inflate(R.layout.food_list_item, parent, false));
 
             mName = (TextView) itemView.findViewById(R.id.name_txtView);
@@ -39,36 +39,36 @@ public class RecyclerView_Config {
             mDescription = (TextView) itemView.findViewById(R.id.description_txtView);
             mScore = (RatingBar) itemView.findViewById(R.id.Score_ratingBar);
         }
-        public void bind(Foods food, String key){
-            mName.setText(food.getCustomer_Name());
-            //mScore.setText(food.getScore());
-            mDescription.setText(food.getDescription());
-            mScore.setRating(Float.valueOf(food.getScore()));
+        public void bind(Comments comments, String key){
+            mName.setText(comments.getCustomer_Name());
+            //mScore.setText(comments.getScore());
+            mDescription.setText(comments.getDescription());
+            mScore.setRating(Float.valueOf(comments.getScore()));
             this.key = key;
         }
     }
-    class FoodsAdapter extends RecyclerView.Adapter<FoodItemView> {
-        private List<Foods> foodList;
+    class CommentsAdapter extends RecyclerView.Adapter<CommentItemView> {
+        private List<Comments> comments;
         private List<String> mKeys;
 
-        public FoodsAdapter(List<Foods> foodList, List<String> mKeys) {
-            this.foodList = foodList;
+        public CommentsAdapter(List<Comments> commentsList, List<String> mKeys) {
+            this.comments = commentsList;
             this.mKeys = mKeys;
         }
 
         @Override
-        public FoodItemView onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return new FoodItemView(viewGroup);
+        public CommentItemView onCreateViewHolder(ViewGroup viewGroup, int i) {
+            return new CommentItemView(viewGroup);
         }
 
         @Override
-        public void onBindViewHolder(FoodItemView foodItemView, int i) {
-            foodItemView.bind(foodList.get(i), mKeys.get(i));
+        public void onBindViewHolder(CommentItemView commentItemView, int i) {
+            commentItemView.bind(comments.get(i), mKeys.get(i));
         }
 
         @Override
         public int getItemCount() {
-            return foodList.size();
+            return comments.size();
         }
     }
 }

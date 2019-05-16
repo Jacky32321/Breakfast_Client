@@ -134,6 +134,9 @@ public class OrderStatus extends AppCompatActivity
         } else if (id == R.id.nav_orders) {
             Intent orderIntent = new Intent(OrderStatus.this, OrderStatus.class);
             startActivity(orderIntent);
+        } else if (id == R.id.nav_comments) {
+            Intent comment = new Intent(OrderStatus.this, ClientComment.class);
+            startActivity(comment);
         } else if (id == R.id.nav_log_out) {
             Intent signIn = new Intent(OrderStatus.this, MainActivity.class);
             //CLEAR_TASK清除此Task的Activity, FLAG_ACTIVITY_NEW_TASK從歷史stack的Task開始

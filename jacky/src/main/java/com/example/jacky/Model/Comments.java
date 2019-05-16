@@ -1,14 +1,14 @@
 package com.example.jacky.Model;
 
-public class Foods {
+public class Comments {
     private String Customer_Name;
     private String Score;
     private String Description;
 
-    public Foods() {
+    public Comments() {
     }
 
-    public Foods(String customer_Name, String score, String description) {
+    public Comments(String customer_Name, String score, String description) {
         Customer_Name = customer_Name;
         Score = score;
         Description = description;

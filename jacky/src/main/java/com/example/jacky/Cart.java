@@ -2,6 +2,7 @@ package com.example.jacky;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -147,10 +149,7 @@ public class Cart extends AppCompatActivity
         int total = 0;
         for(Order order:cart){
             total = total + (Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuantity()));
-            //Locale locale = new Locale("en","US");
-            //NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
             txtTotalPrice.setText(Integer.toString(total));
-            //txtTotalPrice.setText(fmt.format(total));
         }
     }
     @Override
@@ -190,6 +189,9 @@ public class Cart extends AppCompatActivity
         } else if (id == R.id.nav_orders) {
             Intent orderIntent = new Intent(Cart.this, OrderStatus.class);
             startActivity(orderIntent);
+        } else if (id == R.id.nav_comments) {
+            Intent comment = new Intent(Cart.this, ClientComment.class);
+            startActivity(comment);
         } else if (id == R.id.nav_log_out) {
             Intent signIn = new Intent(Cart.this, MainActivity.class);
             //CLEAR_TASK清除此Task的Activity, FLAG_ACTIVITY_NEW_TASK從歷史stack的Task開始

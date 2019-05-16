@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.example.jacky.Model.Foods;
+import com.example.jacky.Model.Comments;
 
 
 import java.util.List;
@@ -21,8 +21,8 @@ public class ClientComment extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_foods);
         new FirebaseDatabaseHelper().readMenu(new FirebaseDatabaseHelper.DataStatus() {
             @Override
-            public void DataIsLoaded(List<Foods> foods, List<String> keys) {
-                new RecyclerView_Config().setConfig(mRecyclerView, ClientComment.this, foods, keys);
+            public void DataIsLoaded(List<Comments> comment, List<String> keys) {
+                new RecyclerView_Config().setConfig(mRecyclerView, ClientComment.this, comment, keys);
             }
 
             @Override
@@ -52,7 +52,7 @@ public class ClientComment extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.new_comment:
-                startActivity(new Intent(new Intent(this, NewFoodActivity.class)));
+                startActivity(new Intent(new Intent(this, NewComment.class)));
                 return true;
         }
         return super.onOptionsItemSelected(item);

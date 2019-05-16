@@ -95,13 +95,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{   //show 
             }
         });
 
-        //count items total price
-        //Locale locale = new Locale("en","US");
-        //NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-        //int price = (Integer.parseInt(list.get(position).getPrice()))*(Integer.parseInt(list.get(position).getQuantity()));
-        //holder.txt_price.setText(price);
-        //holder.txt_price.setText(fmt.format(price));
-
         holder.txt_cart_name.setText(list.get(position).getProductName());
     }
 
