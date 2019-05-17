@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@mipmap/background1"
     tools:context=".NewComment">
 
     <EditText
@@ -15,6 +15,8 @@
         android:ems="10"
         android:hint="Customer_Name"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +29,8 @@
         android:ems="10"
         android:hint="Description"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name_editTxt" />
@@ -47,29 +51,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="61dp"
-        android:text="TextView"
+        android:text="滿意度調查"
         android:textSize="40dp"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="滿意度調查" />
+         />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="324dp"
-        android:layout_marginRight="324dp"
-        android:text="評論"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 
     <RatingBar
         android:id="@+id/Score_ratingBar"

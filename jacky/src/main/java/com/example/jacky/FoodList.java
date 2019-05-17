@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -93,7 +92,7 @@ public class FoodList extends AppCompatActivity
 
     private void loadListFood(String categoryId) {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,
-                R.layout.food_item,
+                R.layout.item_food,
                 FoodViewHolder.class,
                 foodList.orderByChild("menuId").equalTo(categoryId) //Select * from Foods where MenuID
              ) {

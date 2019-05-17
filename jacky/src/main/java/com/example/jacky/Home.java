@@ -3,10 +3,8 @@ package com.example.jacky;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.jacky.Common.Commons;
 import com.example.jacky.Interface.ItemClickListener;
@@ -89,7 +86,7 @@ public class Home extends AppCompatActivity
     private void loadMenu() {
         //添加 Category 和 MenuViewHolder 的 Adapter
         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,
-                R.layout.menu_item,
+                R.layout.item_menu,
                 MenuViewHolder.class,
                 category) {
             @Override

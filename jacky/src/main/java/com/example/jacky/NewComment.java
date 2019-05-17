@@ -22,7 +22,7 @@ public class NewComment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_food);
+        setContentView(R.layout.activity_new_comment);
         mName = (EditText) findViewById(R.id.Name_editTxt);
         mDescription = (EditText) findViewById(R.id.Description_editTxt);
 

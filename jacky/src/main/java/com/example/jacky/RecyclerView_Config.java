@@ -32,7 +32,7 @@ public class RecyclerView_Config {
         private String key;
 
         public CommentItemView(ViewGroup parent){
-            super(LayoutInflater.from(mContext).inflate(R.layout.food_list_item, parent, false));
+            super(LayoutInflater.from(mContext).inflate(R.layout.item_comment, parent, false));
 
             mName = (TextView) itemView.findViewById(R.id.name_txtView);
             //mScore = (TextView) itemView.findViewById(R.id.price_txtView);

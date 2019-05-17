@@ -1,32 +1,20 @@
 package com.example.jacky.ViewHolder;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.jacky.Cart;
-import com.example.jacky.Database.Database;
 import com.example.jacky.Database.Database;
 import com.example.jacky.Model.Order;
 import com.example.jacky.R;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView txt_cart_name;
@@ -63,7 +51,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{   //show 
     @Override
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         LayoutInflater inflater = LayoutInflater.from(cart);  //載入cart_layout.xml
-        View itemView = inflater.inflate(R.layout.cart_layout, parent,false);
+        View itemView = inflater.inflate(R.layout.item_cart, parent,false);
         return new CartViewHolder(itemView);
     }
 

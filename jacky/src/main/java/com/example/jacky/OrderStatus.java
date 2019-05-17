@@ -83,7 +83,7 @@ public class OrderStatus extends AppCompatActivity
         //FirebaseRecyclerAdapter<Request, OrderViewHolder> adapter;
         adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(
                 Request.class,
-                R.layout.order_layout,
+                R.layout.item_order,
                 OrderViewHolder.class,
                 requests.orderByChild("phone").equalTo(phone)){
 
