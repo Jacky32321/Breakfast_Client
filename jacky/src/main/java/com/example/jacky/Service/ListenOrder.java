@@ -1,15 +1,20 @@
 package com.example.jacky.Service;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.example.jacky.Cart;
 import com.example.jacky.Common.Commons;
 
 import com.example.jacky.Database.Database;
@@ -40,7 +45,7 @@ public class ListenOrder extends Service implements ChildEventListener {
     public void onCreate(){
         super.onCreate();
         db = FirebaseDatabase.getInstance();
-        requests = db.getReference("confirm");
+        requests = db.getReference("Request");
     }
 
     @Override
@@ -54,39 +59,36 @@ public class ListenOrder extends Service implements ChildEventListener {
 
     public void onChildChanged(DataSnapshot dataSnapshot, String s){
         Request request = dataSnapshot.getValue(Request.class);
-        String key = dataSnapshot.getKey();
-        System.out.println("##############################1: " + dataSnapshot.getKey());
-
-        requests = db.getReference("Request");
         //submit to firebase
-        requests.child(key).setValue(request);
-
-        showNotification(dataSnapshot.getKey(),request);
-
-
+        if(request.getPhone().equals(Commons.currentUser.getPhone()))
+            showNotification(dataSnapshot.getKey(),request);
     }
 
     private void showNotification(String key, Request request){
         Intent intent = new Intent(getBaseContext(), OrderStatus.class);
-        intent.putExtra("userPhone", request.getPhone());
-        System.out.println("##############################2: " + request.getPhone());
+        //intent.putExtra("userPhone", request.getPhone());
+        //System.out.println(request.getPhone());
 
         //狀態通知
-        PendingIntent contentIntent = PendingIntent.getActivity(getBaseContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
-
-        builder.setAutoCancel(true).setDefaults(Notification.DEFAULT_ALL)
-                                    .setWhen(System.currentTimeMillis())
-                                    .setTicker("EDMTDev")
-                                    .setContentInfo("Your order was updated")
-                                    .setContentText("Order #" + key + "was update status to " + Commons.convertCodeToStatus(request.getStatus()))
-                                    .setContentIntent(contentIntent)
-                                    .setContentInfo("Info")
-                                    .setSmallIcon(R.mipmap.ic_launcher);
-
-        NotificationManager notificationManager = (NotificationManager)getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, builder.build());
+        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            System.out.println("in");
+            String channelId = "default";
+            String channelName = "notice";
+            notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH));
+        }
+        PendingIntent contentIntent = PendingIntent.getActivity(getBaseContext(), 0, intent, 0);
+        Notification notification = new NotificationCompat.Builder(this, "default")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("你的訂單狀態已更新")
+                .setContentText("訂單 #" + key + " 已更新至 " + Commons.convertCodeToStatus(request.getStatus()))
+                .setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setContentIntent(contentIntent)
+                .build();
+        // 建立通知
+        notificationManager.notify(1, notification);
     }
 
     @Override

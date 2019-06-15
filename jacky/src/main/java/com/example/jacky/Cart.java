@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import com.example.jacky.Common.Commons;
 import com.example.jacky.Model.Order;
@@ -120,9 +121,10 @@ public class Cart extends AppCompatActivity
                         cart,
                         editDescription.getText().toString());
 
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
                 Date date = new Date();
                 //submit to firebase
-                requests.child(String.valueOf(date)).setValue(request);
+                requests.child(String.valueOf(simpleDateFormat.format(date))).setValue(request);
 
                 //delete Cart
                 new Database(getBaseContext()).cleanCart();
@@ -202,5 +204,8 @@ public class Cart extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    void testPush() {
+        Log.d("test","測試用push上傳程式");
     }
 }

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 //讀取中畫面, 轉圈圈的那個
                 final ProgressDialog mDialog = new ProgressDialog(MainActivity.this);
-                mDialog.setMessage("Please waiting");
+                mDialog.setMessage("等待處理中");
                 mDialog.show();
 
                 //firebase函式庫, 持續監聽是資料只要有變化，就會有改變的狀態。
@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity
                                 startActivity(homeIntent);
                                 finish();//關閉現有activity
                             }else{
-                                Toast.makeText(MainActivity.this, "Sign in failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "登入失敗!", Toast.LENGTH_SHORT).show();
                             }
                         }else{
-                            Toast.makeText(MainActivity.this, "user not exist", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "使用者不存在", Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override

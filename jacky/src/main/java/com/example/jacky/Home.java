@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.jacky.Common.Commons;
 import com.example.jacky.Interface.ItemClickListener;
 import com.example.jacky.Model.Category;
+import com.example.jacky.Service.ListenOrder;
 import com.example.jacky.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -81,6 +82,10 @@ public class Home extends AppCompatActivity
         recycler_menu.setLayoutManager(layoutManager);
 
         loadMenu();
+
+        //Register Service
+        Intent service = new Intent(Home.this, ListenOrder.class);
+        startService(service);
     }
 
     private void loadMenu() {
