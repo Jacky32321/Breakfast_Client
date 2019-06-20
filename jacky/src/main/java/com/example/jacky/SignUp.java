@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,25 +41,28 @@ public class SignUp extends AppCompatActivity {
         btnSignUP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final ProgressDialog mDialog = new ProgressDialog(SignUp.this);
                 mDialog.setMessage("Please waiting");
                 mDialog.show();
 
-                table_user.addValueEventListener(new ValueEventListener() {
+                    table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         mDialog.dismiss();
                         //check if already in firebase
-                        if(dataSnapshot.child(estPhone.getText().toString()).exists()){
-                            Toast.makeText(SignUp.this, "Phone Number already register!", Toast.LENGTH_SHORT).show();
-                        }else{
+                        if(estPhone.getText().toString().isEmpty() || estPassword.getText().toString().isEmpty() || estName.getText().toString().isEmpty()){
+                            Toast.makeText(SignUp.this, "輸入不可為空!", Toast.LENGTH_SHORT).show();
+                        }
+                        else if(dataSnapshot.child(estPhone.getText().toString()).exists()){
+                            Toast.makeText(SignUp.this, "電話號碼已被使用", Toast.LENGTH_SHORT).show();
+                        }else {
                             User user = new User(estName.getText().toString(), estPassword.getText().toString(), estPhone.getText().toString());
                             table_user.child(estPhone.getText().toString()).setValue(user);
-                            Toast.makeText(SignUp.this, "create succussfully!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, "創建成功!", Toast.LENGTH_SHORT).show();
                             finish(); //Call this when your activity is done and should be closed
                         }
                     }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {

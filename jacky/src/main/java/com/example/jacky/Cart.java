@@ -99,7 +99,7 @@ public class Cart extends AppCompatActivity
 
     private void showAlertDialog(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Cart.this);
-        alertDialog.setTitle("Enter your description");
+        alertDialog.setTitle("請輸入建議");
         //alertDialog.setMessage("Enter your address");
 
         final EditText editDescription = new EditText(Cart.this);
@@ -111,7 +111,7 @@ public class Cart extends AppCompatActivity
         alertDialog.setView(editDescription);
         alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp);
 
-        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("確認", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Request request = new Request(
@@ -133,7 +133,7 @@ public class Cart extends AppCompatActivity
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
