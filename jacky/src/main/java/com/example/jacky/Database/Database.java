@@ -4,14 +4,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.example.jacky.Cart;
+import com.example.jacky.MainActivity;
 import com.example.jacky.Model.Order;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;  //manage database creation and version,
-                                                            // provides developers with a simple way
-                                                            //to ship their Android app with an existing
-                                                            // SQLite database and to manage its initial
-                                                            // creation and any upgrades required with
-                                                            // subsequent version releases
+// provides developers with a simple way
+//to ship their Android app with an existing
+// SQLite database and to manage its initial
+// creation and any upgrades required with
+// subsequent version releases
 
 import java.util.ArrayList;
 
@@ -23,6 +27,8 @@ public class Database extends SQLiteAssetHelper {           //https://github.com
     public Database(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+    //private static final String TAG = "Database";
 
     public ArrayList<Order> getCart(){
         SQLiteDatabase db = getReadableDatabase();
@@ -52,9 +58,26 @@ public class Database extends SQLiteAssetHelper {           //https://github.com
 
     public void addToCart(Order order){    //將餐點加入Cart
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price) VALUES('%s','%s','%s','%s')",
-                order.getProductId(), order.getProductName(), order.getQuantity(), order.getPrice());
-        db.execSQL(query);
+        String check = String.format("SELECT * FROM OrderDetail WHERE ProductName = '%s'", order.getProductName());
+        Cursor c = db.rawQuery(check, null);
+        c.moveToFirst();
+        if(c.getCount() != 0){
+            //Log.v(TAG, order.getQuantity());
+            //Log.v(TAG, c.getString(c.getColumnIndex("Quantity")));
+            int originNumber = Integer.parseInt(c.getString(c.getColumnIndex("Quantity")));
+            int addNumber = Integer.parseInt(order.getQuantity());
+            String total = Integer.toString(originNumber + addNumber);
+            /*if(Integer.parseInt(total) > 20){
+                //Toast.makeText(Database.this, "單筆資料請勿超過20筆!", Toast.LENGTH_SHORT).show();
+                return;
+            }*/
+            String query = String.format("UPDATE OrderDetail SET Quantity = %s WHERE ProductName = '%s'", total, order.getProductName());
+            db.execSQL(query);
+        }else {
+            String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price) VALUES('%s','%s','%s','%s')",
+                    order.getProductId(), order.getProductName(), order.getQuantity(), order.getPrice());
+            db.execSQL(query);
+        }
     }
 
     public void deleteOrder(Order order){

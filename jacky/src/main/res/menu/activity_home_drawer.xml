@@ -8,27 +8,27 @@
             android:id="@+id/nav_menu"
             android:icon="@drawable/ic_restaurant_black_24dp"
             android:iconTint="@android:color/white"
-            android:title="Menu" />
+            android:title="菜單" />
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_shopping_cart_black_24dp"
             android:iconTint="@android:color/white"
-            android:title="Cart" />
+            android:title="購物車" />
         <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_access_time_black_24dp"
             android:iconTint="@android:color/white"
-            android:title="Order" />
+            android:title="訂單" />
         <item
             android:id="@+id/nav_comments"
             android:icon="@drawable/ic_star_black_24dp"
             android:iconTint="@android:color/white"
-            android:title="Comments" />
+            android:title="評論" />
         <item
             android:id="@+id/nav_log_out"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:iconTint="@android:color/white"
-            android:title="Sign Out" />
+            android:title="登出" />
 
     </group>
 </menu>

@@ -34,7 +34,7 @@ public class ClientComment extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("評分");
+        toolbar.setTitle("評論");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

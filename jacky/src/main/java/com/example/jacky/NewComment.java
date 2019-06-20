@@ -35,9 +35,14 @@ public class NewComment extends AppCompatActivity {
             public void onClick(View v){
                 Comments comment = new Comments();
                 score = mRatingbar.getRating();
-                comment.setCustomer_Name(mName.getText().toString());
+                if(mName.getText().toString().isEmpty()) {
+                    comment.setCustomer_Name("匿名");
+                }
+                else{
+                    comment.setCustomer_Name(mName.getText().toString());
+                }
                 comment.setDescription(mDescription.getText().toString());
-                comment.setScore("" + (int)score);
+                comment.setScore(String.valueOf(score));
                 new FirebaseDatabaseHelper().addComment(comment, new FirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Comments> comments, List<String> keys) {
@@ -46,7 +51,7 @@ public class NewComment extends AppCompatActivity {
 
                     @Override
                     public void DataIsInserted() {
-                        Toast.makeText(NewComment.this, "The Comment record has been inserted successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(NewComment.this, "新增成功!", Toast.LENGTH_LONG).show();
                     }
 
                     @Override

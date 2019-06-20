@@ -4,5 +4,5 @@
 
     <item
         android:id="@+id/new_comment"
-        android:title="NEW COMMENT" />
+        android:title="新增評論" />
 </menu>

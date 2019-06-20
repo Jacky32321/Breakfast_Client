@@ -34,7 +34,7 @@ import com.squareup.picasso.Picasso;
 public class FoodDetail extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-    TextView food_name, food_price, food_description;
+    TextView food_name, food_price;
     TextView txtFullname;
     ImageView food_image;
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -88,11 +88,10 @@ public class FoodDetail extends AppCompatActivity
                         numberButton.getNumber(),
                         currentFood.getPrice()
                 ));
-                Toast.makeText(FoodDetail.this, "Add to Cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FoodDetail.this, "加入成功!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        food_description =  (TextView)findViewById(R.id.food_description);
         food_name =  (TextView)findViewById(R.id.food_name);
         food_price =  (TextView)findViewById(R.id.food_price);
         food_image =  (ImageView)findViewById(R.id.img_food);
@@ -117,7 +116,6 @@ public class FoodDetail extends AppCompatActivity
                         .into(food_image);
                 food_price.setText(currentFood.getPrice());
                 food_name.setText(currentFood.getName());
-                food_description.setText(currentFood.getDescription());
             }
 
             @Override

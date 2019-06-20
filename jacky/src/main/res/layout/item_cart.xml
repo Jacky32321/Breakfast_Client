@@ -38,9 +38,9 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="15dp"
                 app:backGroundColor="@color/colorAccent"
-                app:finalNumber="20"
+                app:finalNumber="50"
                 app:initialNumber="1"
-                app:textSize="8sp" />
+                app:textSize="8dp" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/item_delete"

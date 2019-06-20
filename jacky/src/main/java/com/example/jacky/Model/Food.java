@@ -7,20 +7,12 @@ public class Food {
     {}
 
     public Food(String description, String image, String menuID, String name, String price) {
-        Description = description;
         Image = image;
         MenuID = menuID;
         Name = name;
         Price = price;
     }
 
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescriptionn(String description) {
-        Description = description;
-    }
 
     public String getImage() {
         return Image;

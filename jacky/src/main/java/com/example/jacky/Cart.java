@@ -90,7 +90,7 @@ public class Cart extends AppCompatActivity
         btnOrderSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(cart.size() == 0)  Toast.makeText(Cart.this, "你還沒點餐啦幹!", Toast.LENGTH_SHORT).show();
+                if(cart.size() == 0)  Toast.makeText(Cart.this, "您還沒點餐!", Toast.LENGTH_SHORT).show();
                 else    showAlertDialog();
             }
         });
@@ -128,7 +128,7 @@ public class Cart extends AppCompatActivity
 
                 //delete Cart
                 new Database(getBaseContext()).cleanCart();
-                Toast.makeText(Cart.this, "Thank you for order", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cart.this, "謝謝點餐!", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
